@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntuapache
+  labels:
+    customer: netsoftwebit
+spec:
+  selector:
+    matchLabels:
+      app: apachehttp
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: apachehttp
+    spec:
+      containers:
+      - image: nalinsk2001/ubuntuapachehttp2.4.52:02
+        name: web-ctr
+        ports:
+        - containerPort: 80
